@@ -143,7 +143,7 @@ if Success:
 else:
 	print(Count,"Error(s) found - Failure: Data Row longer than Header Row")
 
-#GUESS WHERE YOU FUCKING LEFT OFF YOU STUPID SONUVABITCH ---------> Check userId column for email <--------- GUESS WHERE YOU FUCKING LEFT OFF YOU STUPID SONUVABITCH
+#GUESS WHERE YOU LEFT OFF ---------> Check userId column for email <--------- GUESS WHERE YOU LEFT OFF
 Success = True
 Count = 0
 for i in #csv[1]:
