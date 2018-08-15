@@ -6,7 +6,7 @@
 print("")
 print("Beginning scan of CSV file")
 print("")
-print("Wait...")
+print("Standby...")
 print("")
 
 import re
@@ -149,7 +149,6 @@ def CheckRowLength():
 		print(Count,"Error(s) found - Failure: Data Row longer than Header Row - Errors found in the following rows:", Errors)
 
 # update_progress test script
-print("")
 print("Scan in progress : Standby...")
 for i in range(100):
 	time.sleep(0.1)
