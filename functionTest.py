@@ -125,15 +125,17 @@ def CheckSpecChar():
 def CheckRowLength():
 	Success = True
 	Count = 0
-	for i in csv[1:]:
+	Errors = []
+	for num, i in enumerate(csv[1:],start = 2):
 		result = len(i) > len(csv[0])
 		if result:
 			Success = False
 			Count += 1
+			Errors.append(num)
 	if Success:
 		print("Success: Valid Data Row length")
 	else:
-		print(Count,"Error(s) found - Failure: Data Row longer than Header Row")
+		print(Count,"Error(s) found - Failure: Data Row longer than Header Row - Errors found in the following rows:", Errors)
 
 
 # update_progress test script
