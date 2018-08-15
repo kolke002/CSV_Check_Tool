@@ -158,6 +158,8 @@ print("")
 print("")
 print("Success: Scan complete - Compiling results...")
 time.sleep(10)
+print("")
+print("Scan Results:")
 
 if __name__ == '__main__':
 	Thread(target = CheckFileName).start()
