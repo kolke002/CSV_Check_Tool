@@ -1,9 +1,13 @@
 #Updates made as of 15-Aug-2018
 #Added sys argument to remove need to change file name in script (thanks Jon!)
 #Added enumerate to get the index for data row checks - prints exact row the issue stems from (also thanks to Jon!)
-#Now with threading!
-#Implemented progress bar
-
+#Now with threading! (it's slightly more efficient!)
+#Implemented progress bar (and eliminated excess information from progress bar)
+print("")
+print("Beginning scan of CSV file")
+print("")
+print("Wait...")
+print("")
 
 import re
 import time, sys
@@ -27,23 +31,23 @@ except:
 
 #progress bar
 def update_progress(progress):
-    barLength = 10 # Modify this to change the length of the progress bar
-    status = ""
-    if isinstance(progress, int):
-        progress = float(progress)
-    if not isinstance(progress, float):
-        progress = 0
-        status = "error: progress var must be float\r\n"
-    if progress < 0:
-        progress = 0
-        status = "Halt...\r\n"
-    if progress >= 1:
-        progress = 1
-        status = "Done...\r\n"
-    block = int(round(barLength*progress))
-    text = "\rPercent: [{0}] {1}% {2}".format( "#"*block + "-"*(barLength-block), progress*100, status)
-    sys.stdout.write(text)
-    sys.stdout.flush()
+	barLength = 10 # Modify this to change the length of the progress bar
+	status = ""
+	if isinstance(progress, int):
+		progress = float(progress)
+	if not isinstance(progress, float):
+		progress = 0
+		status = "error: progress var must be float\r\n"
+	if progress < 0:
+		progress = 0
+		status = "Halt...\r\n"
+	if progress >= 1:
+		progress = 1
+		status = "Done...\r\n"
+	block = int(round(barLength*progress))
+	text = "\rPercent: [{0}] {1}% {2}".format( "#"*block + "-"*(barLength-block), progress*100, status)
+	sys.stdout.write(text)
+	sys.stdout.flush()
 
 
 #Check for Valid File Name with no special characters (PLACE YOUR FILE NAME IN HERE)
@@ -66,11 +70,11 @@ def CheckFileName():
 def CheckLimit():
 	csvfile = open(csvFileName,'r')
 	for row in csvfile:
-	    if len(row) <= 200:
-	        print("Success: CSV has", len(row), "rows.")
-	    elif len(row) > 200:
-	        print("Error: CSV has", len(row), "rows.")
-	    break	
+		if len(row) <= 200:
+			print("Success: CSV has", len(row), "rows.")
+		elif len(row) > 200:
+			print("Error: CSV has", len(row), "rows.")
+		break	
 
 	#Check if header-userId is formatted correctly
 def CheckUserId():
@@ -144,40 +148,17 @@ def CheckRowLength():
 	else:
 		print(Count,"Error(s) found - Failure: Data Row longer than Header Row - Errors found in the following rows:", Errors)
 
-
 # update_progress test script
-print("progress : 'hello'")
-update_progress("hello")
-time.sleep(1)
-
-print("progress : 3")
-update_progress(3)
-time.sleep(1)
-
-print("progress : [23]")
-update_progress([23])
-time.sleep(1)
-
 print("")
-print("progress : -10")
-update_progress(-10)
-time.sleep(2)
-
-print("")
-print("progress : 10")
-update_progress(10)
-time.sleep(2)
-
-print("")
-print("progress : 0->1")
+print("Scan in progress : Standby...")
 for i in range(100):
-    time.sleep(0.1)
-    update_progress(i/100.0)
+	time.sleep(0.1)
+	update_progress(i/100.0)
+print("")
 
 print("")
-print("Scan completed")
+print("Success: Scan complete - Compiling results...")
 time.sleep(10)
-
 
 if __name__ == '__main__':
 	Thread(target = CheckFileName).start()
