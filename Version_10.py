@@ -1,3 +1,10 @@
+#Updates made as of 15-Aug-2018
+#Added sys argument to remove need to change file name in script (thanks Jon!)
+#Added enumerate to get the index for data row checks - prints exact row the issue stems from (also thanks to Jon!)
+#Now with threading!
+#Implemented progress bar
+
+
 import re
 import time, sys
 import threading
