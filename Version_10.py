@@ -6,7 +6,7 @@
 print("")
 print("Beginning scan of CSV file")
 print("")
-print("Standby...")
+print("Preparing file...")
 print("")
 
 import re
